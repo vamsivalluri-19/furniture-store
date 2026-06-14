@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+
+{% block title %}VR Furniture - Fine Handcrafted Timbers{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('/static/images/hero_bg.jpg');">
+    <div class="hero-content">
+        <span class="hero-subtitle">EXQUISITE HANDCRAFTED HEIRLOOMS</span>
+        <h1 class="hero-title">Timeless Design, <br>Pure Wood Character</h1>
+        <p class="hero-text">Discover furniture crafted from premium selected woods, shaped by master artisans for comfort and longevity.</p>
+        <div class="hero-actions">
+            <a href="{{ url_for('shop') }}" class="btn btn-primary btn-large">Shop the Collection</a>
+            <a href="#wood-guide" class="btn btn-outline-white btn-large">Explore Woods</a>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="values-section">
+    <div class="section-container">
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fa-solid fa-tree value-icon"></i>
+                <h3>Sustainably Harvested</h3>
+                <p>100% of our timbers are FSC-certified, sourced from ethically managed plantations and historical reclaimed structures.</p>
+            </div>
+            <div class="value-card">
+                <i class="fa-solid fa-hand-holding-heart value-icon"></i>
+                <h3>Artisan Handcrafted</h3>
+                <p>No assembly lines. Each joint is carved and finished by hand, preserving the unique personality of the wood grain.</p>
+            </div>
+            <div class="value-card">
+                <i class="fa-solid fa-shield-halved value-icon"></i>
+                <h3>Lifetime Guarantee</h3>
+                <p>Built using ancestral joinery techniques like mortise-and-tenon to ensure your piece endures for generations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Wood Craftsmanship Guide -->
+<section id="wood-guide" class="wood-guide-section">
+    <div class="section-container">
+        <div class="section-header">
+            <span class="section-subtitle">THE ART OF SELECTION</span>
+            <h2 class="section-title">Our Premium Timbers</h2>
+            <p class="section-desc">Each wood species possesses a unique cellular structure, grain flow, and density profile. Explore the characteristics of the woods we use to craft your custom furniture.</p>
+        </div>
+
+        <div class="wood-explorer">
+            <div class="wood-tabs">
+                <button class="wood-tab active" data-wood="teak">
+                    <span class="tab-indicator"></span>
+                    <span class="tab-title">Burmese Teak</span>
+                </button>
+                <button class="wood-tab" data-wood="mahogany">
+                    <span class="tab-indicator"></span>
+                    <span class="tab-title">Honduran Mahogany</span>
+                </button>
+                <button class="wood-tab" data-wood="oak">
+                    <span class="tab-indicator"></span>
+                    <span class="tab-title">European White Oak</span>
+                </button>
+                <button class="wood-tab" data-wood="walnut">
+                    <span class="tab-indicator"></span>
+                    <span class="tab-title">American Walnut</span>
+                </button>
+                <button class="wood-tab" data-wood="rosewood">
+                    <span class="tab-indicator"></span>
+                    <span class="tab-title">Indian Rosewood</span>
+                </button>
+            </div>
+
+            <div class="wood-display glass-panel">
+                <!-- Teak Details -->
+                <div class="wood-panel active" id="wood-teak">
+                    <div class="wood-panel-grid">
+                        <div class="wood-panel-info">
+                            <span class="wood-badge badge-teak">Legendary Durability</span>
+                            <h3>Burmese Teak <span class="wood-sci">(Tectona grandis)</span></h3>
+                            <p class="wood-desc">Rich in natural rubber and oils, Burmese Teak offers unmatched moisture resistance and dimensional stability. It resists rotting, insect attacks, and warping, making it the most coveted timber for luxury indoor and outdoor furniture.</p>
+                            
+                            <div class="wood-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Hardness (Janka)</span>
+                                    <div class="stat-bar-container"><div class="stat-bar" style="width: 60%"></div></div>
+                                    <span class="stat-value">1,070 lbf</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Grain Pattern</span>
+                                    <span class="stat-pattern-desc">Straight, coarse texture, slightly greasy feel</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Natural Color</span>
+                                    <span class="stat-color-desc">Golden brown to amber tones</span>
+                                </div>
+                            </div>
+                            
+                            <div class="wood-panel-footer">
+                                <a href="{{ url_for('shop', wood='Teak') }}" class="btn btn-secondary">Browse Teak Products</a>
+                            </div>
+                        </div>
+                        <div class="wood-panel-visual">
+                            <div class="wood-grain-preview teak-grain">
+                                <span class="preview-label">Grain Showcase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mahogany Details -->
+                <div class="wood-panel" id="wood-mahogany">
+                    <div class="wood-panel-grid">
+                        <div class="wood-panel-info">
+                            <span class="wood-badge badge-mahogany">Royal Elegance</span>
+                            <h3>Honduran Mahogany <span class="wood-sci">(Swietenia macrophylla)</span></h3>
+                            <p class="wood-desc">Mahogany is a world-renowned cabinet wood prized for its workability, smooth finish, and deep reddish-brown luster. It displays exceptional dimensional stability and yields a stunning, reflective surface when polished.</p>
+                            
+                            <div class="wood-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Hardness (Janka)</span>
+                                    <div class="stat-bar-container"><div class="stat-bar" style="width: 50%"></div></div>
+                                    <span class="stat-value">900 lbf</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Grain Pattern</span>
+                                    <span class="stat-pattern-desc">Interlocking or straight, medium texture, highly uniform</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Natural Color</span>
+                                    <span class="stat-color-desc">Reddish-brown, darkens over time</span>
+                                </div>
+                            </div>
+                            
+                            <div class="wood-panel-footer">
+                                <a href="{{ url_for('shop', wood='Mahogany') }}" class="btn btn-secondary">Browse Mahogany Products</a>
+                            </div>
+                        </div>
+                        <div class="wood-panel-visual">
+                            <div class="wood-grain-preview mahogany-grain">
+                                <span class="preview-label">Grain Showcase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Oak Details -->
+                <div class="wood-panel" id="wood-oak">
+                    <div class="wood-panel-grid">
+                        <div class="wood-panel-info">
+                            <span class="wood-badge badge-oak">Classic Strength</span>
+                            <h3>European White Oak <span class="wood-sci">(Quercus robur)</span></h3>
+                            <p class="wood-desc">White Oak is an exceptionally hard, heavy, and rot-resistant hardwood. Highly favored in traditional and contemporary craft, its prominent rays and rings produce striking grain patterns (especially when quartersawn).</p>
+                            
+                            <div class="wood-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Hardness (Janka)</span>
+                                    <div class="stat-bar-container"><div class="stat-bar" style="width: 78%"></div></div>
+                                    <span class="stat-value">1,360 lbf</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Grain Pattern</span>
+                                    <span class="stat-pattern-desc">Straight, uneven texture with ray-fleck markings</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Natural Color</span>
+                                    <span class="stat-color-desc">Light to medium brown with olive casts</span>
+                                </div>
+                            </div>
+                            
+                            <div class="wood-panel-footer">
+                                <a href="{{ url_for('shop', wood='Oak') }}" class="btn btn-secondary">Browse Oak Products</a>
+                            </div>
+                        </div>
+                        <div class="wood-panel-visual">
+                            <div class="wood-grain-preview oak-grain">
+                                <span class="preview-label">Grain Showcase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Walnut Details -->
+                <div class="wood-panel" id="wood-walnut">
+                    <div class="wood-panel-grid">
+                        <div class="wood-panel-info">
+                            <span class="wood-badge badge-walnut">Luxury Choice</span>
+                            <h3>American Walnut <span class="wood-sci">(Juglans nigra)</span></h3>
+                            <p class="wood-desc">American Black Walnut is the pinnacle of luxury cabinet timber. Rich dark brown tones, sometimes with purplish streaks, provide a warm and luxurious presence. Its fine texture responds magnificently to natural wax finishes.</p>
+                            
+                            <div class="wood-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Hardness (Janka)</span>
+                                    <div class="stat-bar-container"><div class="stat-bar" style="width: 58%"></div></div>
+                                    <span class="stat-value">1,010 lbf</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Grain Pattern</span>
+                                    <span class="stat-pattern-desc">Usually straight, can be wavy, with medium texture</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Natural Color</span>
+                                    <span class="stat-color-desc">Deep chocolate brown with lighter sapwood</span>
+                                </div>
+                            </div>
+                            
+                            <div class="wood-panel-footer">
+                                <a href="{{ url_for('shop', wood='Walnut') }}" class="btn btn-secondary">Browse Walnut Products</a>
+                            </div>
+                        </div>
+                        <div class="wood-panel-visual">
+                            <div class="wood-grain-preview walnut-grain">
+                                <span class="preview-label">Grain Showcase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rosewood Details -->
+                <div class="wood-panel" id="wood-rosewood">
+                    <div class="wood-panel-grid">
+                        <div class="wood-panel-info">
+                            <span class="wood-badge badge-rosewood">Dramatic Luster</span>
+                            <h3>Indian Rosewood <span class="wood-sci">(Dalbergia sissoo)</span></h3>
+                            <p class="wood-desc">Also known as Sheesham, Indian Rosewood is highly prized for its extreme density and contrasting grain stripes. Extremely tough and heavy, Rosewood furniture is incredibly resistant to wear and carries a unique presence.</p>
+                            
+                            <div class="wood-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Hardness (Janka)</span>
+                                    <div class="stat-bar-container"><div class="stat-bar" style="width: 95%"></div></div>
+                                    <span class="stat-value">1,660 lbf</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Grain Pattern</span>
+                                    <span class="stat-pattern-desc">Interlocking, highly textured with bold streaks</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Natural Color</span>
+                                    <span class="stat-color-desc">Golden brown to deep chestnut with dark streaks</span>
+                                </div>
+                            </div>
+                            
+                            <div class="wood-panel-footer">
+                                <a href="{{ url_for('shop', wood='Rosewood') }}" class="btn btn-secondary">Browse Rosewood Products</a>
+                            </div>
+                        </div>
+                        <div class="wood-panel-visual">
+                            <div class="wood-grain-preview rosewood-grain">
+                                <span class="preview-label">Grain Showcase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Collection CTA -->
+<section class="collection-cta" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('/static/images/mahogany_desk.jpg');">
+    <div class="section-container">
+        <h2>Bring the Luxury of Real Wood Into Your Home</h2>
+        <p>Browse our entire catalog of masterfully finished tables, beds, workspaces, and wardrobes.</p>
+        <a href="{{ url_for('shop') }}" class="btn btn-primary btn-large">View Store Collection</a>
+    </div>
+</section>
+{% endblock %}

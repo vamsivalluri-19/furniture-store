@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - VR Furniture{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+    <div class="section-container">
+        <div class="section-header">
+            <span class="section-subtitle">VISIT OR CALL</span>
+            <h1 class="section-title">Get In Touch</h1>
+            <p class="section-desc">Have a custom wood furniture project in mind or need assistance? Reach out to our design consultants or visit our boutique showroom.</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Contact details -->
+            <div class="contact-details-panel">
+                <div class="contact-info-card glass-panel">
+                    <div class="info-icon-box"><i class="fa-solid fa-phone"></i></div>
+                    <div class="info-details">
+                        <h3>Call Support</h3>
+                        <p class="info-value">+1 (555) 789-9870</p>
+                        <p class="info-sub">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card glass-panel">
+                    <div class="info-icon-box"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="info-details">
+                        <h3>Email Inquiry</h3>
+                        <p class="info-value">concierge@graingild.com</p>
+                        <p class="info-sub">We reply within 24 hours</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card glass-panel">
+                    <div class="info-icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <div class="info-details">
+                        <h3>Boutique Showroom</h3>
+                        <p class="info-value">848 Timberlane Blvd, Suite 100</p>
+                        <p class="info-sub">Portland, OR 97205</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info-card glass-panel">
+                    <div class="info-icon-box"><i class="fa-solid fa-hammer"></i></div>
+                    <div class="info-details">
+                        <h3>Artisan Workshop</h3>
+                        <p class="info-value">122 Woodwright Mills</p>
+                        <p class="info-sub">Oregon City, OR 97045</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-panel glass-panel">
+                <h3>Send Us a Message</h3>
+                <p class="form-intro">Detail your request, design ideas, or timber preference below.</p>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact_name">Your Name</label>
+                            <input type="text" id="contact_name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_email">Email Address</label>
+                            <input type="email" id="contact_email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact_timber">Timber of Interest</label>
+                        <select id="contact_timber">
+                            <option value="None">Just General Inquiry</option>
+                            <option value="Teak">Burmese Teak</option>
+                            <option value="Mahogany">Honduran Mahogany</option>
+                            <option value="Oak">European White Oak</option>
+                            <option value="Walnut">American Walnut</option>
+                            <option value="Rosewood">Indian Rosewood</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact_message">Your Design Vision / Message</label>
+                        <textarea id="contact_message" rows="5" placeholder="Describe the type of table, finish, or customization you are looking for..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large btn-block" id="btnSubmitContact">
+                        <span>Send Message</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+                
+                <div class="contact-success-message" id="contactSuccess">
+                    <i class="fa-solid fa-circle-check success-icon"></i>
+                    <h3>Message Received!</h3>
+                    <p>Thank you for reaching out. An artisan design consultant will contact you within 24 hours to discuss your timber selection and project requirements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

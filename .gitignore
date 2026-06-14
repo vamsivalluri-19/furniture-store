@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Sensitive data
+.env
+
+# Database
+# Exclude SQLite database, since it will be auto-generated and seeded upon startup
+database.db
+instance/
+
+# Local history / IDE settings
+.vscode/
+.idea/
+.dist/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp

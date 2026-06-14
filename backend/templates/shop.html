@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}VR Showroom - VR Furniture{% endblock %}
+
+{% block content %}
+<section class="shop-section">
+    <div class="section-container">
+        <!-- Search and Filter Bar -->
+        <div class="shop-controls glass-panel">
+            <form action="{{ url_for('shop') }}" method="GET" class="search-form">
+                <div class="search-input-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" name="q" placeholder="Search furniture..." value="{{ search_query }}">
+                    {% if active_wood != 'All' %}
+                        <input type="hidden" name="wood" value="{{ active_wood }}">
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            
+            <div class="shop-filters">
+                <span class="filter-label">Timber Type:</span>
+                <div class="filter-pills">
+                    <a href="{{ url_for('shop', q=search_query) }}" class="filter-pill {% if active_wood == 'All' %}active{% endif %}">
+                        All Timbers
+                    </a>
+                    {% for wood in wood_types %}
+                        <a href="{{ url_for('shop', wood=wood, q=search_query) }}" class="filter-pill {% if active_wood == wood %}active{% endif %}">
+                            {{ wood }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop Grid -->
+        <div class="shop-grid-header">
+            <h2>Showing {{ products|length }} Handcrafted Pieces</h2>
+            {% if active_wood != 'All' or search_query %}
+                <a href="{{ url_for('shop') }}" class="clear-filters">Clear all filters <i class="fa-solid fa-xmark"></i></a>
+            {% endif %}
+        </div>
+
+        {% if products %}
+            <div class="products-grid">
+                {% for product in products %}
+                    <div class="product-card glass-panel" 
+                         data-id="{{ product.id }}" 
+                         data-name="{{ product.name }}" 
+                         data-price="${{ '%.2f' | format(product.price) }}"
+                         data-wood="{{ product.wood_type }}" 
+                         data-image="{{ product.image }}"
+                         data-desc="{{ product.description }}">
+                        <div class="product-card-visual">
+                            <img src="{{ product.image }}" alt="{{ product.name }}" class="product-img" loading="lazy">
+                            <span class="product-wood-tag badge-{{ product.wood_type.lower() }}">{{ product.wood_type }} Wood</span>
+                        </div>
+                        <div class="product-card-body">
+                            <h3 class="product-title">{{ product.name }}</h3>
+                            <div class="product-footer">
+                                <span class="product-price">${{ '%.2f' | format(product.price) }}</span>
+                                <button class="btn btn-primary btn-sm view-details-btn">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-products glass-panel">
+                <i class="fa-regular fa-face-frown no-products-icon"></i>
+                <h3>No masterpieces found</h3>
+                <p>We couldn't find any furniture matching your filters. Try selecting another timber type or search query.</p>
+                <a href="{{ url_for('shop') }}" class="btn btn-primary">Browse All Furniture</a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Product Details Modal -->
+<div class="modal" id="detailsModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container glass-panel">
+        <button class="modal-close" id="modalCloseBtn">&times;</button>
+        <div class="modal-grid" id="modalContent">
+            <div class="modal-visual">
+                <img id="modalImg" src="" alt="Product Image">
+            </div>
+            <div class="modal-details">
+                <span class="wood-badge" id="modalWoodTag"></span>
+                <h2 id="modalTitle"></h2>
+                <div class="modal-price" id="modalPrice"></div>
+                
+                <div class="modal-divider"></div>
+                
+                <p class="modal-desc" id="modalDesc"></p>
+                
+                <div class="modal-divider"></div>
+                
+                <!-- Customize Options -->
+                <div class="customize-options">
+                    <h4>Varnish Finish Finish</h4>
+                    <div class="finish-options">
+                        <label class="finish-option">
+                            <input type="radio" name="finish" value="Natural Oil" checked>
+                            <span class="finish-box">
+                                <span class="finish-dot finish-natural"></span>
+                                <span class="finish-name">Natural Oil</span>
+                            </span>
+                        </label>
+                        <label class="finish-option">
+                            <input type="radio" name="finish" value="Matte Wax">
+                            <span class="finish-box">
+                                <span class="finish-dot finish-matte"></span>
+                                <span class="finish-name">Matte Wax</span>
+                            </span>
+                        </label>
+                        <label class="finish-option">
+                            <input type="radio" name="finish" value="Glossy Lacquer">
+                            <span class="finish-box">
+                                <span class="finish-dot finish-glossy"></span>
+                                <span class="finish-name">Glossy Lacquer</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Add to Cart Mock -->
+                <div class="modal-actions">
+                    <div class="qty-selector">
+                        <button class="qty-btn" id="qtyMinus">-</button>
+                        <input type="number" id="qtyInput" value="1" min="1" max="10">
+                        <button class="qty-btn" id="qtyPlus">+</button>
+                    </div>
+                    <button class="btn btn-primary btn-large btn-block" id="btnAddToCart">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart (Mock)
+                    </button>
+                </div>
+                <!-- VR Interactive Toggle -->
+                <button class="btn btn-secondary btn-block btn-large" id="btnLaunchVR" style="margin-top: 15px;">
+                    <i class="fa-solid fa-vr-cardboard"></i> Enter VR Interactive Preview
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- VR Immersive Modal -->
+<div class="modal" id="vrModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container glass-panel vr-modal-container">
+        <button class="modal-close" id="vrCloseBtn">&times;</button>
+        <div class="vr-workspace">
+            <div class="vr-scene" id="vrScene">
+                <div class="vr-grid-floor"></div>
+                <div class="vr-furniture-stage">
+                    <img id="vrProductImg" src="" alt="VR Showcase Object">
+                </div>
+                <div class="vr-hud">
+                    <div class="vr-hud-panel glass-panel">
+                        <h3>VR Interactive Mode</h3>
+                        <p id="vrProductTitle" class="accent"></p>
+                        <div class="hud-controls">
+                            <button class="btn btn-secondary btn-sm" id="btnRotateLeft" title="Rotate Left"><i class="fa-solid fa-rotate-left"></i> Rotate Left</button>
+                            <button class="btn btn-secondary btn-sm" id="btnRotateRight" title="Rotate Right"><i class="fa-solid fa-rotate-right"></i> Rotate Right</button>
+                            <button class="btn btn-secondary btn-sm" id="btnZoomIn" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                            <button class="btn btn-secondary btn-sm" id="btnZoomOut" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

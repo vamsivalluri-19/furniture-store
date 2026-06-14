@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In - VR Furniture{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="auth-bg-ornament"></div>
+    <div class="auth-card glass-panel">
+        <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p>Access your VR furniture collection</p>
+        </div>
+        
+        <form method="POST" action="{{ url_for('login') }}" class="auth-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-user input-icon"></i>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required autocomplete="username">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block btn-large">
+                <span>Sign In</span>
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+        </form>
+        
+        <div class="auth-footer">
+            <p>New to VR Furniture? <a href="{{ url_for('register') }}" class="auth-link">Create an account</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}
